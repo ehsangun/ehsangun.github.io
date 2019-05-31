@@ -17,14 +17,14 @@
     <meta property="og:image" content="http://matari.ir/img/common/logo.png" />
     <meta property="og:description" content="Ehsan Matari personal web page" />
     <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141178069-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141178069-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-  gtag('config', 'UA-141178069-1');
-</script>
+        gtag('config', 'UA-141178069-1');
+    </script>
 
 
     <title>Ehsan Matari</title>
@@ -129,8 +129,8 @@
 
             <p>
             <div>This site is built with ❤️ using <a class="link" href="https://purecss.io/">Pure</a> on Github pages
-            and also using Google APIs for form handling .</div>
-                <a class="link" href="https://github.com/ehsangun/ehsangun.github.io">GitHub Project</a>
+                and also using Google APIs for form handling .</div>
+            <a class="link" href="https://github.com/ehsangun/ehsangun.github.io">GitHub Project</a>
 
             </p>
         </div>
@@ -141,7 +141,7 @@
 
         <div class="pure-g">
             <div class="l-box-lrg pure-u-1 pure-u-md-2-5">
-                <form class="pure-form pure-form-stacked"  onsubmit="return postToGoogle(); " target="_self" action="">
+                <form class="pure-form pure-form-stacked" target="_self" action="">
                     <fieldset>
 
                         <label for="nameField">Your Name</label>
@@ -154,7 +154,7 @@
                         <label for="messageField">Your Message</label>
                         <textarea id="messageField" type="password" placeholder="Your message..." name="entry.1474571321"></textarea>
 
-                        <button type="submit" onclick="disable()" class="pure-button" id="subbtn" >Send your message</button>
+                        <button type="submit" onclick="return postToGoogle();" class="pure-button" id="subbtn" >Send your message</button>
                     </fieldset>
                 </form>
 
@@ -181,10 +181,6 @@
     </div>
 
     <script>
-        function disable() {
-            document.getElementById("subbtn").innerHTML = "<button type=\"submit\" class=\"pure-button\" id=\"subbtn\" disabled>Tanks for your message.</button>";
-            alert('Done! we will read it as soon as possible')
-        }
         function postToGoogle() {
             var field1 = $("#nameField").val();
             var field2 = $("#emailField").val();
@@ -225,8 +221,10 @@
 
                 }
             });
+            alert('Done! we will read it as soon as possible');
             return false;
         }
+
     </script>
 
 </div>
