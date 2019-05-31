@@ -1,0 +1,108 @@
+
+<link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet"/>
+<style>html,
+body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #222;
+}
+
+#gsTitle {
+    position: relative;
+    color: #fff;
+    font-size: 108px;
+    font-family: "oswald", sans-serif;
+// font-family: monospace;
+}
+.gsTitle-title {
+    margin: 0;
+    white-space: nowrap;
+}
+.gsTitle-color {
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    margin: -.05em 0 0 .05em;
+    color: dodgerblue;
+    mix-blend-mode: darken;
+    transition: .1s;
+    transition-property: opacity, margin;
+}
+.gsTitle-b {
+    margin: .05em 0 0 -.05em;
+    color: tomato;
+    mix-blend-mode: color-burn;
+}
+.gsTitle-glitched .gsTitle-color {
+    opacity: .4;
+}
+</style>
+<div id="gsTitle">
+    <div class="gsTitle-title"></div>
+    <div class="gsTitle-title gsTitle-color gsTitle-a"></div>
+    <div class="gsTitle-title gsTitle-color gsTitle-b"></div>
+</div>
+<script>
+    const gsTitle = {
+    init() {
+        this._root = document.querySelector( "#gsTitle" );
+        this._titles = this._root.querySelectorAll( ".gsTitle-title" );
+        this._frame = this._frame.bind( this );
+        this.setTexts( [
+            "404 : Page not found !",
+            "4o4 ; pAgE noT F*und .",
+            "4O4 : PAGE NOT found ¡",
+            "worng url worng url ",
+            "こんにちは 世界国地球 ¡",
+        ] );
+    },
+    on() {
+        if ( !this._frameId ) {
+            this._frame();
+        }
+    },
+    off() {
+        clearTimeout( this._frameId );
+        this._textContent( this._text );
+        delete this._frameId;
+    },
+    setTexts( [ text, ...alt ] ) {
+        this._text = text;
+        this._textAlt = alt;
+    },
+
+    // private:
+    _text: "",
+    _textAlt: [],
+    _rand( n ) {
+        return Math.random() * n | 0;
+    },
+    _textContent( txt ) {
+        this._titles.forEach( el => el.textContent = txt );
+    },
+    _frame() {
+        const txt = Array.from( this._text );
+
+        for ( let i = 0; i < 6; ++i ) {
+            const ind = this._rand( this._text.length );
+
+            txt[ ind ] = this._textAlt[ this._rand( this._textAlt.length ) ][ ind ];
+        }
+        this._textContent( txt.join( "" ) );
+        this._root.classList.add( "gsTitle-glitched" );
+        setTimeout( () => {
+            this._textContent( this._text );
+            this._root.classList.remove( "gsTitle-glitched" );
+        }, 50 + Math.random() * 200 );
+        this._frameId = setTimeout( this._frame, 250 + Math.random() * 500 );
+    },
+};
+
+gsTitle.init();
+gsTitle.on();
+</script>
