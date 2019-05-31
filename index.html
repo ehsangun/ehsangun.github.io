@@ -185,6 +185,7 @@
             var field1 = $("#nameField").val();
             var field2 = $("#emailField").val();
             var field3 = $("#messageField").val();
+            var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
             if(field1 == ""){
                 alert('Please Fill Your Name');
@@ -193,6 +194,11 @@
             }
             if(field2 == ""){
                 alert('Please Fill Your Email');
+                document.getElementById("nameField").focus();
+                return false;
+            }
+            if(!field2.match(mailformat)){
+                alert('You have entered an invalid email address!');
                 document.getElementById("emailField").focus();
                 return false;
             }
