@@ -20,6 +20,15 @@ html {
     color: whitesmoke;
     text-decoration: underline;
 }
+.icons {
+  color: white;
+  font-size: 20px;
+}
+.icons:hover {
+  color: black;
+
+
+}
 
 /*
  * -- BASE STYLES --
